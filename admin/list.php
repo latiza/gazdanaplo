@@ -5,7 +5,7 @@ session_start();
 // Ellenőrizzük, hogy a felhasználó be van-e jelentkezve
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     // Ha nincs bejelentkezve, irányítsuk át a bejelentkezési oldalra
-    header("Location: ../login.php");
+    header("Location: index.php");
     exit();
 }
 require "../connect.php";

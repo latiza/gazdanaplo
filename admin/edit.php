@@ -18,10 +18,15 @@ $id = (int)$_GET['id']; // Az id értékének beolvasása és számként kezelé
 
 // Cikk lekérdezése az adatbázisból
 $query = "SELECT alias, ordering, nav_name, content, description, keywords, states, img FROM cms_news WHERE id = ?";
+// Készítsük elő a lekérdezést a megadott SQL utasítással
 $stmt = mysqli_prepare($dbconn, $query);
 if ($stmt) {
+     // Ha a lekérdezés előkészítése sikeres, kössük hozzá a változókat
+     //Az "i" jelzi, hogy a megadott paraméter ($id) integer típusú.
     mysqli_stmt_bind_param($stmt, "i", $id);
+     // Futtassuk az előkészített lekérdezést
     mysqli_stmt_execute($stmt);
+    // Szerezzük meg az eredményhalmazt a futtatott lekérdezésből
     $result = mysqli_stmt_get_result($stmt);
 
     if ($row = mysqli_fetch_assoc($result)) {

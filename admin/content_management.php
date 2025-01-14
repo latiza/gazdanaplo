@@ -4,7 +4,7 @@ session_start();
 // Ellenőrizzük, hogy a felhasználó be van-e jelentkezve
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     // Ha nincs bejelentkezve, irányítsuk át a bejelentkezési oldalra
-    header("Location: ../login.php");
+    header("Location: index.php");
     exit();
 }
 require "../connect.php";
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             $imgPath = $targetFile ? basename($targetFile) : null;
             mysqli_stmt_bind_param($stmt, "sissssis", $alias, $ordering, $nav_name, $content, $description, $keywords, $state, $imgPath);
             if (mysqli_stmt_execute($stmt)) {
-                header("Location: edit.php");
+                header("Location: list.php");
                 exit();
             } else {
                 $output = "<p>Hiba történt az adatbázis művelet során: " . htmlspecialchars(mysqli_stmt_error($stmt), ENT_QUOTES, 'UTF-8') . "</p>";
